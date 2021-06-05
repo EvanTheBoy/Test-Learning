@@ -70,7 +70,7 @@ int main()
 	HashTable hash[N];
 	initHashTable(hash, len);
 	for (int i = 0; i < num; i++) {
-		printf("数据：");
+		printf("输入数据：");
 		scanf("%d", &data);
 		createHashTable(hash, len, data);
 	}
