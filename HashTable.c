@@ -2,26 +2,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define N 800
-typedef struct node {  //´¢´æ¶ÔÓ¦ÓÚÃ¿Ò»¸öÍ·½áµãµÄ½áµãµÄÖµºÍÏÂÒ»½áµã
+typedef struct node {  //å‚¨å­˜å¯¹åº”äºæ¯ä¸€ä¸ªå¤´ç»“ç‚¹çš„ç»“ç‚¹çš„å€¼å’Œä¸‹ä¸€ç»“ç‚¹
 	int key;
 	struct Node* next;
 }Node;
 
-typedef struct hashTable {  //Õâ¸ö½á¹¹ÌåÓÃÀ´´¢´æÍ·½áµã
+typedef struct hashTable {  //è¿™ä¸ªç»“æ„ä½“ç”¨æ¥å‚¨å­˜å¤´ç»“ç‚¹
 	struct Node* headNode;
 }HashTable;
 
-void initHashTable(HashTable hash[], int len)  //Ã¿Ò»¸öÍ·½áµãÖ¸Ïò¶¼ÏÈÉèÎª¿Õ
+void initHashTable(HashTable hash[], int len)  //æ¯ä¸€ä¸ªå¤´ç»“ç‚¹æŒ‡å‘éƒ½å…ˆè®¾ä¸ºç©º
 {
 	for (int i = 0; i < len; i++) {
 		hash[i].headNode = NULL;
 	}
 }
 
-void createHashTable(HashTable hash[], int len, int data)  //´´½¨¹şÏ£±í
+void createHashTable(HashTable hash[], int len, int data)  //åˆ›å»ºå“ˆå¸Œè¡¨
 {
-	int index = data % len;  //¼ÆËã´æ´¢µÄĞòºÅ
-	if (!hash[index].headNode) {  //Èç¹ûÕâ¸öµØ·½Í·½áµã»¹Ã»ÓĞÖµ£¬ÄÇ¾ÍÏÈ°ÑËü´æÔÚÕâÀï
+	int index = data % len;  //è®¡ç®—å­˜å‚¨çš„åºå·
+	if (!hash[index].headNode) {  //å¦‚æœè¿™ä¸ªåœ°æ–¹å¤´ç»“ç‚¹è¿˜æ²¡æœ‰å€¼ï¼Œé‚£å°±å…ˆæŠŠå®ƒå­˜åœ¨è¿™é‡Œ
 		Node* p = (Node*)malloc(sizeof(Node));
 		p->key = data;
 		p->next = NULL;
@@ -31,7 +31,7 @@ void createHashTable(HashTable hash[], int len, int data)  //´´½¨¹şÏ£±í
 		Node* p, * q;
 		p = hash[index].headNode;
 		q = (Node*)malloc(sizeof(Node));
-		while (p->next != NULL)  //Õâ¸öÑ­»·¿ÉÒÔÕÒµ½×îºóÒ»¸ö½áµã
+		while (p->next != NULL)  //è¿™ä¸ªå¾ªç¯å¯ä»¥æ‰¾åˆ°æœ€åä¸€ä¸ªç»“ç‚¹
 		{
 			p = p->next;
 		}
@@ -41,17 +41,17 @@ void createHashTable(HashTable hash[], int len, int data)  //´´½¨¹şÏ£±í
 	}
 }
 
-int searchHashTable(HashTable hash[], int len, int data)  //ÔÚ¹şÏ£±íÖĞ½øĞĞ²éÕÒ
+int searchHashTable(HashTable hash[], int len, int data)  //åœ¨å“ˆå¸Œè¡¨ä¸­è¿›è¡ŒæŸ¥æ‰¾
 {
 	int index = data % len;
 	Node* p = hash[index].headNode;
 	for (int i = 1;; i++) {
 		if (!p) {
-			printf("Î´ÕÒµ½¸ÃÔªËØ£¡\n");
+			printf("æœªæ‰¾åˆ°è¯¥å…ƒç´ ï¼\n");
 			break;
 		}
 		else if (p->key == data) {
-			printf("%dÊı¾İµÄÎ»ÖÃÊÇ%d.\n", data, i);
+			printf("%dåœ¨å“ˆå¸Œè¡¨ä¸­çš„ä½ç½®æ˜¯:ç´¢å¼•ä¸º%då·å•å…ƒçš„ç¬¬%dä¸ªæ•°æ®.\n", data, index, i);
 			break;
 		}
 		else {
@@ -63,18 +63,18 @@ int searchHashTable(HashTable hash[], int len, int data)  //ÔÚ¹şÏ£±íÖĞ½øĞĞ²éÕÒ
 int main()
 {
 	int len, data, num;
-	printf("¹şÏ£±í³¤£º");
+	printf("å“ˆå¸Œè¡¨é•¿ï¼š");
 	scanf("%d", &len);
-	printf("Êı¾İ¸öÊı£º");
+	printf("æ•°æ®ä¸ªæ•°ï¼š");
 	scanf("%d", &num);
 	HashTable hash[N];
 	initHashTable(hash, len);
 	for (int i = 0; i < num; i++) {
-		printf("Êı¾İ£º");
+		printf("æ•°æ®ï¼š");
 		scanf("%d", &data);
 		createHashTable(hash, len, data);
 	}
-	printf("ÄãÒªËÑË÷µÄÊı¾İ£º");
+	printf("ä½ è¦æœç´¢çš„æ•°æ®ï¼š");
 	scanf("%d", &data);
 	searchHashTable(hash, len, data);
 	return 0;
