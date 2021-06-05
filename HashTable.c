@@ -4,11 +4,11 @@
 #define N 800
 typedef struct node {  //储存对应于每一个头结点的结点的值和下一结点
 	int key;
-	struct Node* next;
+	struct node* next;
 }Node;
 
 typedef struct hashTable {  //这个结构体用来储存头结点
-	struct Node* headNode;
+	Node* headNode;
 }HashTable;
 
 void initHashTable(HashTable hash[], int len)  //每一个头结点指向都先设为空
