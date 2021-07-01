@@ -5,7 +5,7 @@ public class AllKindsOfSorts {
 	private int gap;
 	private boolean change,flag;
 	
-	public void bubbleSort(int[] arr){  //Ã°ÅİÅÅĞò
+	public void bubbleSort(int[] arr){  //å†’æ³¡æ’åº
 		for(int i = arr.length - 1;i>=0;i--){
 			flag = false;
 			for(int j = 0;j < i;j++){
@@ -22,7 +22,7 @@ public class AllKindsOfSorts {
 		}
 	}
 	
-	private int partition(int[] arr,int low,int high)  //¿ìËÙÅÅĞò·Ö¸î·½·¨
+	private int partition(int[] arr,int low,int high)  //å¿«é€Ÿæ’åºåˆ†å‰²æ–¹æ³•
 	{
 		pivot = arr[low];
 		while(low < high)
@@ -43,7 +43,7 @@ public class AllKindsOfSorts {
 		return low;
 	}
 	
-	public void quickSort(int[] arr,int low,int high)  //¿ìËÙÅÅĞò
+	public void quickSort(int[] arr,int low,int high)  //å¿«é€Ÿæ’åº
 	{
 		if(low < high){
 			index = partition(arr,low,high);
@@ -52,7 +52,7 @@ public class AllKindsOfSorts {
 		}
 	}
 	
-	public void insertSort(int[] arr){  //²åÈëÅÅĞò
+	public void insertSort(int[] arr){  //æ’å…¥æ’åº
 		for(int i = 1;i < arr.length;i++){
 			int j = i;
 			while(j > 0 && arr[j] < arr[j-1])
@@ -65,36 +65,36 @@ public class AllKindsOfSorts {
 		}
 	}
 	
-	public void shellSort(int[] arr){  //Ï£¶ûÅÅĞò
+	public void shellSort(int[] arr){  //å¸Œå°”æ’åº
 		for(gap = arr.length/2;gap > 0;gap /= 2){
 			for(int i = gap;i < arr.length;i++){
 				int j = i;
 				while(j-gap >= 0 && arr[j] < arr[j-gap])
 				{
 					int temp = arr[j];
-					arr[j] = arr[j-1];
-					arr[j-1] = temp;
+					arr[j] = arr[j-gap];
+					arr[j-gap] = temp;
 					j -= gap;
 				}
 			}
 		}
 	}
 	
-	public void mergeSort(int[] arr){  //¹é²¢ÅÅĞò
+	public void mergeSort(int[] arr){  //å½’å¹¶æ’åº
 		int[] temp = new int[arr.length];
 		divide(arr,0,arr.length-1,temp);
 	}
 	
 	private void divide(int[] arr,int left,int right,int[] temp){
-		if(left < right){  //µİ¹é½áÊøÌõ¼ş
-			int mid = (left + right) / 2;  //È¡arrÊı×éµÄÖĞ¼äÖµ
+		if(left < right){  //é€’å½’ç»“æŸæ¡ä»¶
+			int mid = (left + right) / 2;  //å–arræ•°ç»„çš„ä¸­é—´å€¼
 			divide(arr,left,mid,temp);
 			divide(arr,mid+1,right,temp);
 			merge(arr,left,mid,right,temp);
 		}
 	}
 	
-	private void merge(int[] arr,int left,int mid,int right,int[] temp){  //°Ñ·Ö¸îµÄÊıÒ»¸öÒ»¸öºÏ²¢
+	private void merge(int[] arr,int left,int mid,int right,int[] temp){  //æŠŠåˆ†å‰²çš„æ•°ä¸€ä¸ªä¸€ä¸ªåˆå¹¶
 		int pLeft = left,pRight = mid+1,pTemp = 0;
 		while(pLeft<=mid && pRight<=right)
 		{
@@ -120,7 +120,7 @@ public class AllKindsOfSorts {
 		}
 	}
 	
-	public void selectSort(int[] arr){  //Ñ¡ÔñÅÅĞò
+	public void selectSort(int[] arr){  //é€‰æ‹©æ’åº
 		for(int i = 0;i < arr.length - 1;i++){
 			int index = i;
 			for(int j = i + 1;j < arr.length;j++){
@@ -137,23 +137,23 @@ public class AllKindsOfSorts {
 		}
 	}
 	
-	private void createHeap(int[] arr,int i,int length){  //¶ÑÅÅĞò
+	private void createHeap(int[] arr,int i,int length){  //å †æ’åº
 		int temp = arr[i];  //A
-		for(int k = i*2 + 1;k<length;k=k*2+1){  //´Óµ±Ç°½áµãµÄÒ¶×Ó½áµã¿ªÊ¼
-			if(k+1<length && arr[k]<arr[k+1]){  //ÕâÒ»²½ÊÇÕÒ³öµ±Ç°½áµãµÄ×óÓÒº¢×Ó½áµãÖĞ±È½Ï´óµÄÄÇÒ»¸ö
+		for(int k = i*2 + 1;k<length;k=k*2+1){  //ä»å½“å‰ç»“ç‚¹çš„å¶å­ç»“ç‚¹å¼€å§‹
+			if(k+1<length && arr[k]<arr[k+1]){  //è¿™ä¸€æ­¥æ˜¯æ‰¾å‡ºå½“å‰ç»“ç‚¹çš„å·¦å³å­©å­ç»“ç‚¹ä¸­æ¯”è¾ƒå¤§çš„é‚£ä¸€ä¸ª
 				k++;
 			}
 			
-			if(arr[k] > temp){   //º¢×Ó±È¸¸Ç×´ó£¬¾ÍµÃ½»»»
+			if(arr[k] > temp){   //å­©å­æ¯”çˆ¶äº²å¤§ï¼Œå°±å¾—äº¤æ¢
 				arr[i] = arr[k];  //B
-				i = k;  //C  //ÕâÒ»²½½»»»Èç¹û¿´²»¶®Ä£Äâ³ÌĞòÔËĞĞ£¬Ò»ÏÂ¾Í¶®ÁË
+				i = k;  //C  //è¿™ä¸€æ­¥äº¤æ¢å¦‚æœçœ‹ä¸æ‡‚æ¨¡æ‹Ÿç¨‹åºè¿è¡Œï¼Œä¸€ä¸‹å°±æ‡‚äº†
 			}else{
 				break;
 			}
 		}
 		arr[i] = temp;  //D
 	}
-	 //ÒÔÉÏA,B,C,DËÄ²½¾ÍÊÇ½»»»Á½¸öÔªËØµÄ¹ı³Ì
+	 //ä»¥ä¸ŠA,B,C,Då››æ­¥å°±æ˜¯äº¤æ¢ä¸¤ä¸ªå…ƒç´ çš„è¿‡ç¨‹
 	private void swap(int[] arr,int a,int b){
 		int temp = arr[a];
 		arr[a] = arr[b];
