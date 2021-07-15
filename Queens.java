@@ -40,7 +40,7 @@ public class Queens {
      * @param y
      * @param n
      */
-    private void updataAttack(int x, int y, int n){  
+    private void updateAttack(int x, int y, int n){  
         int[] dx = {-1, -1, -1, 0, 1, 1, 1, 0};  //行方向
         int[] dy = {-1, 0, 1, 1, 1, 0, -1, -1};  //列方向
         attack[x][y] = 1;
@@ -84,7 +84,7 @@ public class Queens {
                 int[][] temp = new int[10][10];
                 copy(temp, attack, n); //先备份
                 queen[k][i] = 'Q'; //在这个位置放置皇后
-                updataAttack(k, i, n); // 因为上一步放置了皇后，所以需要更新attack数组
+                updateAttack(k, i, n); // 因为上一步放置了皇后，所以需要更新attack数组
                 dfs(k + 1, n); //递归下一行，继续放置皇后
                 copy(attack, temp, n); //递归完成后，需要回溯，因此需要回到原来的状态
                 queen[k][i] = '.';
