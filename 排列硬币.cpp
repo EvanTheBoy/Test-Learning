@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-class Arrage {
+class Arrange {
 	private:
 		double sqrt(double x, int n)
 		{
@@ -22,9 +22,9 @@ class Arrage {
 };
 int main()
 {
-	Arrage ar;
+	Arrange ar;
 	int n;
-	cout << "ÊäÈëÒ»¸öÊı:" << endl;
+	cout << "ÃŠÃ¤ÃˆÃ«Ã’Â»Â¸Ã¶ÃŠÃ½:" << endl;
 	cin >> n;
 	int res = ar.arrange(n);
 	cout << res << endl;
